@@ -1,2 +1,2 @@
 gunicorn
-discord
+discord>=1.7.3
