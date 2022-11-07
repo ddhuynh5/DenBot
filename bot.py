@@ -1,8 +1,6 @@
 # Imports
 import os
 import discord
-from tkinter.messagebox import askyesno
-from unittest import async_case
 from dotenv import load_dotenv
 from discord.ext import commands
 
