@@ -1,3 +1,2 @@
 gunicorn
 discord
-git+https://github.com/ddhuynh5/discord.py
