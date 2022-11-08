@@ -35,6 +35,8 @@ async def on_voice_state_update(member, before, after):
 async def on_message(message):
     if message.content == "pog":
         await message.channel.send('very pog')
+    elif message.content == "very pog":
+        await message.channel.send('the poggest')
 
     if len(message.attachments) > 0 and member.id == 181438247015022592:
         await message.channel.send('fuk of')
