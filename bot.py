@@ -30,7 +30,7 @@ async def on_voice_state_update(member, before, after):
 
 # code to react to user msg
 @client.event
-async def on_message(message):
+async def on_message(message, member):
     if not message.author.bot:
         if message.content == "pog":
             await message.channel.send('very pog')
