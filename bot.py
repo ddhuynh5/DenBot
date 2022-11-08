@@ -37,7 +37,7 @@ async def on_message(message):
         elif message.content == "very pog":
             await message.channel.send('the poggest')
 
-    if (message.attachments or 'https://' in message) and message.author == 181438247015022592:
+    if (message.attachments or 'https://' in message.content) and message.author == 181438247015022592:
         await message.channel.send('fuk of')
         await message.delete()
 
