@@ -38,7 +38,7 @@ async def on_message(message):
             await message.channel.send('the poggest')
 
     if len(message.attachments) > 0:
-        await message.channel.send(message.author)
+        await message.channel.send(message.author.id)
         await message.delete()
 
 
