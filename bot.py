@@ -45,7 +45,8 @@ async def on_message(message):
 
 
 @client.command()
-async def cat(ctx):
+async def cat(ctx, arg):
+    await ctx.send(arg)
     url = "https://api.thecatapi.com/v1/images/search"
     response = requests.get(url)
     res = response.json()
