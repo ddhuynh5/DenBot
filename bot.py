@@ -60,8 +60,8 @@ async def cat(ctx):
     res = response.json()
     
     for r in res:
-        print(r["url"])
-        # await ctx.send(r["url"])
+        #print(r["url"])
+        await ctx.send(r["url"])
 
 
 client.run(TOKEN)
