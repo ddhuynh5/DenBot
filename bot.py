@@ -6,9 +6,8 @@ import requests
 from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
-intents = discord.Intents.default()
-intents.message_content = True
-client = commands.Bot(command_prefix="$", intents=intents)
+
+client = commands.Bot(command_prefix="$$$", intents=discord.Intents.default())
 
 # on startup
 
@@ -45,7 +44,7 @@ async def on_message(message):
         await message.delete()
 
 
-@client.command()
+@client.command(name="users", description="shows number of members in server")
 async def users(ctx):
     await ctx.send(f"""This server has {id.member_count} members""")
 
