@@ -48,7 +48,7 @@ async def cat(ctx):
     url = "https://api.thecatapi.com/v1/images/search"
     response = requests.get(url)
     res = response.json()
-    print(res)
+    await ctx.send(res["url"])
 
 
 client.run(TOKEN)
