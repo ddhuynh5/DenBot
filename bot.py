@@ -52,12 +52,12 @@ async def users(ctx):
 @client.command()
 async def cat(ctx, arg):
     await ctx.send(arg)
-    url = "https://api.thecatapi.com/v1/images/search"
-    response = requests.get(url)
-    res = response.json()
+    #url = "https://api.thecatapi.com/v1/images/search"
+    #response = requests.get(url)
+    #res = response.json()
     
-    for r in res:
-        await ctx.send(r["url"])
+    #for r in res:
+    #    await ctx.send(r["url"])
 
 
 client.run(TOKEN)
