@@ -1,6 +1,7 @@
 # Imports
 import os
 import discord
+import cat
 from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -41,5 +42,9 @@ async def on_message(message):
         await message.channel.send("Nice try dumbass")
         await message.delete()
 
+
+@client.command()
+async def cat(ctx):
+    await cat.getCat(directory='/users/tor', filename='cat', format='gif')
 
 client.run(TOKEN)
