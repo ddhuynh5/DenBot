@@ -9,14 +9,24 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
+
+# code to react to user msg
+@client.event
+async def on_message(message):
+    if not message.author.bot:
+        if message.content == "pog":
+            await message.channel.send("very pog")
+        elif message.content == "very pog":
+            await message.channel.send("the poggest")
+
+    if len(message.attachments) > 0 and message.author.id == 181438247015022592:
+        await message.channel.send("Nice try dumbass")
+        await message.delete()
+
+
 @client.command()
 async def test(ctx):
     await ctx.send("test")
-
-
-@client.command(name="users", description="shows number of members in server")
-async def users(ctx):
-    await ctx.send(f"""This server has {id.member_count} members""")
 
 
 @client.command()
