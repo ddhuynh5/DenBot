@@ -47,7 +47,7 @@ async def on_message(message):
     await client.process_commands(message)
     
 
-@client.command(name="users", description="shows number of members in server")
+@client.command()
 async def users(ctx):
     await ctx.send(f"""This server has {id.member_count} members""")
 
@@ -59,13 +59,12 @@ async def test(ctx):
 
 @client.command()
 async def cat(ctx, *, arg):
-    await ctx.channel.send(arg)
-    #url = "https://api.thecatapi.com/v1/images/search"
-    #response = requests.get(url)
-    #res = response.json()
+    url = "https://api.thecatapi.com/v1/images/search"
+    response = requests.get(url)
+    res = response.json()
     
-    #for r in res:
-    #    await ctx.send(r["url"])
+    for r in res:
+        await ctx.send(r["url"])
 
 
 client.run(TOKEN)
