@@ -22,6 +22,8 @@ async def on_message(message):
     if len(message.attachments) > 0 and message.author.id == 181438247015022592:
         await message.channel.send("Nice try dumbass")
         await message.delete()
+    
+    await client.process_commands(message)
 
 
 @client.command()
