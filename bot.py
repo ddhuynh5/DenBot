@@ -49,7 +49,8 @@ async def on_message(message):
 
 @client.command()
 async def users(ctx):
-    await ctx.send(f"""This server has {id.member_count} members""")
+    server = client.get_guild(395872472370642944)
+    await ctx.send(f"""This server has {server.members} members""")
 
 
 @client.command()
