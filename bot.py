@@ -61,7 +61,7 @@ async def cat(ctx):
     
     for r in res:
         print(r["url"])
-        await ctx.send(r["url"])
+        # await ctx.send(r["url"])
 
 
 client.run(TOKEN)
