@@ -60,7 +60,8 @@ async def cat(ctx):
     res = response.json()
     
     for r in res:
-        await ctx.send(file=discord.file(r["url"]))
+        print(r["url"])
+        await ctx.send(r["url"])
 
 
 client.run(TOKEN)
