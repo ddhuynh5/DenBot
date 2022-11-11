@@ -55,4 +55,5 @@ async def cat(ctx, arg):
         await ctx.send(r["url"])
 
 
+client.add_command(cat)
 client.run(TOKEN)
