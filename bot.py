@@ -9,6 +9,27 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
+# on startup
+
+
+@client.event
+async def on_ready():
+    print("Connected to bot: {}".format(client.user.name))
+    print("Bot ID: {}".format(client.user.id))
+
+# code to mention a user whenever another user joins a voice channel
+# in this example, my friend andy will be pinged
+# andy_id = 217419100018704384
+
+
+@client.event
+async def on_voice_state_update(member, before, after):
+    if not before.channel and after.channel and member.id == 210225328402989056:
+        andy_id = 217419100018704384
+        channel = client.get_channel(395879704328142849)
+        await channel.send(f"<@{andy_id}> get on :smiling_imp:")
+
+
 
 # code to react to user msg
 @client.event
@@ -24,6 +45,11 @@ async def on_message(message):
         await message.delete()
     
     await client.process_commands(message)
+    
+
+@client.command(name="users", description="shows number of members in server")
+async def users(ctx):
+    await ctx.send(f"""This server has {id.member_count} members""")
 
 
 @client.command()
@@ -32,7 +58,7 @@ async def test(ctx):
 
 
 @client.command()
-async def cat(ctx, arg):
+async def cat(ctx, *, arg):
     await ctx.channel.send(arg)
     #url = "https://api.thecatapi.com/v1/images/search"
     #response = requests.get(url)
