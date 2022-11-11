@@ -1,12 +1,13 @@
 # Imports
 import os
+import json
 import discord
 import requests
 from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+client = commands.Bot(command_prefix="$", intents=discord.Intents.all())
 
 # on startup
 
@@ -48,7 +49,9 @@ async def cat(ctx):
     url = "https://api.thecatapi.com/v1/images/search"
     response = requests.get(url)
     res = response.json()
-    await ctx.send(res["url"])
+    
+    for r in res:
+        await ctx.send(r["url"])
 
 
 client.run(TOKEN)
