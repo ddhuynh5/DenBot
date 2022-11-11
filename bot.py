@@ -7,7 +7,7 @@ from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-client = commands.Bot(command_prefix="$$$", intents=discord.Intents.default())
+client = commands.Bot(command_prefix="$$$", intents=discord.Intents.all())
 
 # on startup
 
