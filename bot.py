@@ -1,7 +1,7 @@
 # Imports
 import os
 import discord
-import cat
+import requests
 from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -45,8 +45,10 @@ async def on_message(message):
 
 @client.command()
 async def cat(ctx):
-    await cat.getCat(directory='/users/tor', filename='cat', format='gif')
+    url = "https://api.thecatapi.com/v1/images/search"
+    response = requests.get(url)
+    res = response.json()
+    print(res)
 
-client.add_command(cat)
 
 client.run(TOKEN)
