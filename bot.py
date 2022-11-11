@@ -45,6 +45,11 @@ async def on_message(message):
 
 
 @client.command()
+async def users(ctx):
+    await ctx.send(f"""This server has {id.member_count} members""")
+
+
+@client.command()
 async def cat(ctx, arg):
     await ctx.send(arg)
     url = "https://api.thecatapi.com/v1/images/search"
@@ -55,5 +60,4 @@ async def cat(ctx, arg):
         await ctx.send(r["url"])
 
 
-client.add_command(cat)
 client.run(TOKEN)
