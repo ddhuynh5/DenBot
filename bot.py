@@ -47,4 +47,6 @@ async def on_message(message):
 async def cat(ctx):
     await cat.getCat(directory='/users/tor', filename='cat', format='gif')
 
+client.add_command(cat)
+
 client.run(TOKEN)
