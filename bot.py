@@ -44,7 +44,7 @@ async def on_message(message):
 
     if message.author.id == 181438247015022592 and num < 25:
         await message.delete()
-        await message.channel.send("<:emoji_name:smiling_imp>")
+        await message.channel.send(":smiling_imp:")
 
     if len(message.attachments) > 0 and message.author.id == 181438247015022592:
         await message.channel.send("Nice try dumbass")
