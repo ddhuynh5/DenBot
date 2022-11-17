@@ -42,7 +42,7 @@ async def on_message(message):
         elif message.content == "very pog":
             await message.channel.send("the poggest")
         if message.content == "hi":
-            await message.channel.send(embed=discord.Embed(title="Title", description="Desc", color=0x00000))
+            await message.channel.send(embed=discord.Embed(title="RAH", description=message.content, color=0x00000))
 
     if message.author.id == 181438247015022592 and (num <= 50 and num >= 100):
         await message.delete()
