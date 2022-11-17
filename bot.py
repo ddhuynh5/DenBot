@@ -59,7 +59,7 @@ async def on_message(message):
 
 @bot.command()
 async def users(ctx):
-    server = bot.get_guild(395872472370642944)
+    server = bot.guilds.id
     await ctx.send(f"""This server has {server.members} members""")
 
 
