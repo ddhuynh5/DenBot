@@ -34,15 +34,17 @@ async def on_voice_state_update(member, before, after):
 # code to react to user msg
 @client.event
 async def on_message(message):
-    num = random.randint(0, 100)
+    num = random.randint(-1000, 1000)
 
     if not message.author.bot:
         if message.content == "pog":
             await message.channel.send("very pog")
         elif message.content == "very pog":
             await message.channel.send("the poggest")
+        if message.content == "hi":
+            await message.channel.send(discord.Embed(title="Title", description="Desc", color=0x00000))
 
-    if message.author.id == 181438247015022592 and num < 25:
+    if message.author.id == 181438247015022592 and (num <= 50 and num >= 100):
         await message.delete()
         await message.channel.send(":smiling_imp:")
 
