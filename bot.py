@@ -51,16 +51,20 @@ async def on_message(message):
         await message.channel.send(embed=discord.Embed(title=":smiling_imp:", description=message.content))
 
     if len(message.attachments) > 0 and message.author.id == 181438247015022592:
-        await message.channel.send("Nice try dumbass")
+        await message.channel.send("Nice try silly goose")
         await message.delete()
 
     await bot.process_commands(message)
 
 
 @bot.command()
+async def help(ctx):
+    await context.send('`Default Help Command`')
+
+
+@bot.command()
 async def users(ctx):
-    server = bot.guilds.id
-    await ctx.send(f"""This server has {server.members} members""")
+    await ctx.send(f"""This server has {len(ctx.guild.members)} members""")
 
 
 @bot.command()
