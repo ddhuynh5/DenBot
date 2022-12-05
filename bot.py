@@ -58,11 +58,6 @@ async def on_message(message):
 
 
 @bot.command()
-async def help(ctx):
-    await context.send('`Default Help Command`')
-
-
-@bot.command()
 async def users(ctx):
     await ctx.send(f"""This server has {len(ctx.guild.members)} members""")
 
