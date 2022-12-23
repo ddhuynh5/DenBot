@@ -5,10 +5,10 @@ import requests
 import random
 
 from discord.ext import commands, tasks
-from music_player import MusicPlayer
+#from music_player import MusicPlayer
 #from dotenv import load_dotenv
 
-#load_dotenv()
+# load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
@@ -28,16 +28,27 @@ async def on_ready():
 
 @bot.event
 async def on_voice_state_update(member, before, after):
-    """ 
+    """
         code to mention a user whenever another user joins a voice channel
-        in this example, my friend andy will be pinged
+        in this example, my friend andy will be pinged when I join a channel
         andy_id = 217419100018704384
     """
+    me = 210225328402989056
 
-    if not before.channel and after.channel and member.id == 210225328402989056:
-        andy_id = 217419100018704384
-        channel = bot.get_channel(395879704328142849)
-        await channel.send(f"<@{andy_id}> get on :smiling_imp:")
+    try:
+        if not before.channel and after.channel and member.id == me:
+            andy = 217419100018704384
+            channel = bot.get_channel(395879704328142849)
+
+            ids = [m.id for m in after.channel.members]
+
+            if andy not in ids:
+                await channel.send(f"<@{andy}> get on :smiling_imp:")
+            else:
+                return
+
+    except Exception:
+        pass
 
 
 @bot.event
@@ -83,6 +94,12 @@ async def cat(ctx):
         await ctx.send(r["url"])
 
 
+@bot.command(name="austin", help="'I just need a command that @ austin - Richard 12/14/2022 6:17 PM'")
+async def austin(ctx):
+    austin = 181438247015022592
+    await ctx.send(f"Hey <@{austin}>, {ctx.author.mention} wanted you")
+
+
 @bot.command(name='join', help='Make the bot to join the voice channel')
 async def join(ctx):
     if not ctx.message.author.voice:
@@ -102,7 +119,7 @@ async def leave(ctx):
         await ctx.send("The bot is not connected to a voice channel.")
 
 
-@bot.command(name='play', help='Plays a song')
+""" @bot.command(name='play', help='Plays a song')
 async def play(ctx, url):
     try:
         server = ctx.message.guild
@@ -115,7 +132,7 @@ async def play(ctx, url):
 
         await ctx.send('**Now playing:** {}'.format(filename))
 
-    except:
+    except Exception:
         await ctx.send("The bot is not connected to a voice channel.")
 
 
@@ -143,7 +160,7 @@ async def stop(ctx):
     if voice_client.is_playing():
         await voice_client.stop()
     else:
-        await ctx.send("The bot is not playing anything at the moment.")
+        await ctx.send("The bot is not playing anything at the moment.") """
 
 
 bot.run(TOKEN)
