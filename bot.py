@@ -28,27 +28,35 @@ async def on_ready():
 
 @bot.event
 async def on_voice_state_update(member, before, after):
+
+    # ---- Start Notification On Join Region ----
     """
         code to mention a user whenever another user joins a voice channel
         in this example, my friend andy will be pinged when I join a channel
         andy_id = 217419100018704384
     """
     me = 210225328402989056
+    andy = 217419100018704384
+    chat_channel = 395879704328142849
 
     try:
         if not before.channel and after.channel and member.id == me:
-            andy = 217419100018704384
-            channel = bot.get_channel(395879704328142849)
+            channel = bot.get_channel(chat_channel)
 
             ids = [m.id for m in after.channel.members]
 
             if andy not in ids:
-                await channel.send(f"<@{andy}> get on :smiling_imp:")
+                await channel.send(f"<@{me}> get on :smiling_imp:")
+                # msg = await channel.send("Would you like to ")
+                # await msg.add_reaction('👍')
+                # await msg.add_reaction('👎')
             else:
                 return
 
     except Exception:
         pass
+
+    # ---- End Notification On Join Region ----
 
 
 @bot.event
@@ -98,6 +106,19 @@ async def cat(ctx):
 async def austin(ctx):
     austin = 181438247015022592
     await ctx.send(f"Hey <@{austin}>, {ctx.author.mention} wanted you")
+
+
+@bot.command(name="member_list", help="List of members in embed")
+async def member_list(ctx):
+    members = ctx.guild.members
+    data = "\n".join([member.name for member in members])
+    embed = discord.Embed(
+        title="RAH",
+        description=f"{data}",
+        color=discord.Color.purple()
+    )
+
+    await ctx.send(embed=embed)
 
 
 @bot.command(name='join', help='Make the bot to join the voice channel')
