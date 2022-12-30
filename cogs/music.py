@@ -52,12 +52,11 @@ class MusicPlayer(discord.PCMVolumeTransformer):
 
         if 'entries' in data:
             data = data['entries'][0]
-        print(data)
-        filename = data['title'] if stream else youtube.prepare_filename(data)
-        return filename
+
+        return data['title'] if stream else youtube.prepare_filename(data)
 
 
-class YoutubePlayer(commands.Cog):
+class YoutubeCommands(commands.Cog):
     """ Commands for user to interact with music player """
 
     def __init__(self, bot):
@@ -91,15 +90,20 @@ class YoutubePlayer(commands.Cog):
         """ Plays a song, takes in a YT URL as a parameter """
 
         try:
+            voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
+            if voice is None:
+                channel = ctx.message.author.voice.channel
+                await channel.connect()
+
             server = ctx.message.guild
             voice_channel = server.voice_client
 
             async with ctx.typing():
-                filename = await MusicPlayer.from_url(url, loop=self.bot.loop)
+                file_name = await MusicPlayer.from_url(url, loop=self.bot.loop)
                 voice_channel.play(discord.FFmpegPCMAudio(
-                    executable="ffmpeg.exe", source=filename))
+                    executable="ffmpeg.exe", source=file_name))
 
-            await ctx.send(f"**Now Player:** {filename}")
+            await ctx.send(f"**Now Playing:** {url}")
 
         except AttributeError:
             await ctx.send("The bot is not connected to a voice channel.")
@@ -138,4 +142,4 @@ class YoutubePlayer(commands.Cog):
 async def setup(bot):
     """ Adds the cog to the bot """
 
-    await bot.add_cog(YoutubePlayer(bot))
+    await bot.add_cog(YoutubeCommands(bot))
