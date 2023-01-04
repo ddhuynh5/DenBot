@@ -45,7 +45,7 @@ async def on_voice_state_update(member, before, after):
         ids = [m.id for m in after.channel.members]
 
         if andy not in ids:
-            await channel.send(f"<@{dennis}> get on :smiling_imp:")
+            await channel.send(f"<@{andy}> get on :smiling_imp:")
             # msg = await channel.send("Would you like to ")
             # await msg.add_reaction('👍')
             # await msg.add_reaction('👎')
@@ -90,7 +90,7 @@ async def main():
 
     async with bot:
         for filename in os.listdir('./cogs'):
-            if filename.endswith('.py'):
+            if filename.endswith('.py') and "music" not in filename:
                 await bot.load_extension(f'cogs.{filename[:-3]}')
         await bot.start(TOKEN)
 
