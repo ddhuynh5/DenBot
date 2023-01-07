@@ -18,7 +18,7 @@ async def main():
 
     async with bot:
         for filename in os.listdir('./cogs'):
-            if filename.endswith('.py'):  # and "music" not in filename:
+            if filename.endswith('.py') and "music" not in filename:
                 await bot.load_extension(f'cogs.{filename[:-3]}')
         await bot.start(TOKEN)
 
