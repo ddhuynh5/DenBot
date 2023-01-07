@@ -8,7 +8,7 @@ from discord.ext import commands
 
 
 class Fun(commands.Cog):
-    """ Fun Commands """
+    """ Misc. Fun Commands """
 
     def __init__(self, bot):
         self.bot = bot
@@ -20,7 +20,7 @@ class Fun(commands.Cog):
 
     @commands.command(name='cat', help='A Fun cat appears!')
     async def cat(self, ctx):
-        """ Uses TheCatAPI to get a Fun cat picture/GIF """
+        """ Uses TheCatAPI to get a fun cat picture/GIF """
         url = "https://api.thecatapi.com/v1/images/search"
         response = requests.get(url, timeout=5)
         res = response.json()
