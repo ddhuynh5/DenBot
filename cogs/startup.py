@@ -1,6 +1,5 @@
 """ Startup cog """
 
-import os
 import random
 import discord
 
