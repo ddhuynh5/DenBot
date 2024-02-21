@@ -35,14 +35,14 @@ class Fun(commands.Cog):
         austin = 181438247015022592
         await ctx.send(f"Hey <@{austin}>, {ctx.author.mention} wanted you")
 
-    @commands.command(name="member_list", help="List of members in embed")
-    async def member_list(self, ctx):
+    @commands.command(name="members", help="List of members in embed")
+    async def members(self, ctx):
         """ Gets an embedded list of all server members """
 
         members = ctx.guild.members
         data = "\n".join([member.name for member in members])
         embed = discord.Embed(
-            title="RAH",
+            title="Server Members:",
             description=f"{data}",
             color=discord.Color.purple()
         )
