@@ -4,9 +4,9 @@ import os
 import discord
 from discord.ext import commands
 from pymongo import MongoClient
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 DB_PASS = os.getenv("DB_PASS")
 
 client = MongoClient(f"mongodb+srv://ddhuynh:{DB_PASS}@discordbotcluster.qshhl7v.mongodb.net/")
