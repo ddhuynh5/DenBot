@@ -18,12 +18,12 @@ class Twitter(commands.Cog):
             suffix = message.content.split("twitter.com/")[1]
             modified_url = "http://fxtwitter.com/" + suffix
             await message.delete()
-            await message.channel.send(modified_url)
+            await message.channel.send(modified_url + " | **__" + str(message.author) + "__**")
         elif ("https://x.com/" in message.content):
             suffix = message.content.split("x.com/")[1]
             modified_url = "http://fixupx.com/" + suffix
             await message.delete()
-            await message.channel.send(modified_url)
+            await message.channel.send(modified_url + " | **__" + str(message.author) + "__**")
 
 async def setup(bot):
     """ Adds cog to bot """
