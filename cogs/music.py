@@ -56,7 +56,7 @@ class MusicPlayer(discord.PCMVolumeTransformer):
         return data['title'] if stream else youtube.prepare_filename(data)
 
 
-class YoutubeCommands(commands.Cog):
+class MusicCommands(commands.Cog):
     """ Commands for user to interact with music player """
 
     def __init__(self, bot):
@@ -142,4 +142,4 @@ class YoutubeCommands(commands.Cog):
 async def setup(bot):
     """ Adds the cog to the bot """
 
-    await bot.add_cog(YoutubeCommands(bot))
+    await bot.add_cog(MusicCommands(bot))
