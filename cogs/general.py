@@ -32,7 +32,7 @@ class General(commands.Cog):
 
     @commands.command(name="remind", help="Usage: !remind [number] [s/m/h/d] [msg]")
     async def remind(self, ctx, duration: str, *, msg: str):
-        """ Removes a specified number of  """
+        """ Removes a specified number of messages depicted by user """
 
         seconds = self.parse_duration(duration)
 
