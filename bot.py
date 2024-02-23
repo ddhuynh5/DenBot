@@ -3,17 +3,24 @@
 import os
 import asyncio
 import discord
-
 from discord.ext import commands
-# from dotenv import load_dotenv
 
-# load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 USERNAME = os.getenv("DB_USER")
 PASSWORD = os.getenv("DB_PASS")
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+class BotOverride(commands.Bot):
+    """ Overrides default Bot classes """
 
+    async def process_commands(self, message):
+
+        if message.author.id == 801145557099347968:
+            return
+
+        ctx = await self.get_context(message)
+        await self.invoke(ctx)
+
+bot = BotOverride(command_prefix="!", intents=discord.Intents.all())
 
 async def main():
     """ Main function where bot loads cogs and starts up """
