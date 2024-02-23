@@ -1,4 +1,4 @@
-""" Startup cog """
+""" startup.py """
 
 import random
 import discord
@@ -83,19 +83,19 @@ class Startup(commands.Cog):
     #         await message.channel.send("Nice try silly goose")
     #         await message.delete()
 
-    @commands.command()
-    async def shutdown(self, ctx):
-        """ Shuts down the bot """
-        dennis = 210225328402989056
-        if ctx.message.author.id == dennis:
-            print("shutdown")
-            try:
-                await self.bot.logout()
-            except EnvironmentError:
-                print("EnvironmentError")
-                self.bot.clear()
-        else:
-            await ctx.send("You do not own this bot!")
+    # @commands.command()
+    # async def shutdown(self, ctx):
+    #     """ Shuts down the bot """
+    #     dennis = 210225328402989056
+    #     if ctx.message.author.id == dennis:
+    #         print("shutdown")
+    #         try:
+    #             await self.bot.logout()
+    #         except EnvironmentError:
+    #             print("EnvironmentError")
+    #             self.bot.clear()
+    #     else:
+    #         await ctx.send("You do not own this bot!")
 
 
 async def setup(bot):

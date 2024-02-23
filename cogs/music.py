@@ -1,4 +1,4 @@
-""" Music Player Cog """
+""" music.py """
 
 import asyncio
 import youtube_dl
@@ -29,7 +29,7 @@ youtube = youtube_dl.YoutubeDL(FORMAT_OPTIONS)
 
 
 class MusicPlayer(discord.PCMVolumeTransformer):
-    """ Grabs Youtube URL from site using youtube_dl """
+    """ Music Player Cog """
 
     def __init__(self, source, *, data, volume=0.5):
         super().__init__(source, volume)

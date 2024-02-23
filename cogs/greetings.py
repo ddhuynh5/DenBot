@@ -1,4 +1,4 @@
-""" Test Cog using code from API docs """
+""" greetings.py """
 
 import discord
 from discord.ext import commands

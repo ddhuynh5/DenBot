@@ -1,4 +1,4 @@
-""" Twitter/X Cog """
+""" twitter.py """
 
 import discord
 from discord.ext import commands

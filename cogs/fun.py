@@ -1,4 +1,4 @@
-""" Fun Commands """
+""" fun.py """
 
 import asyncio
 import discord

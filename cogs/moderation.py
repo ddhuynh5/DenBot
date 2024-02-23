@@ -1,9 +1,9 @@
-""" General Server Moderation Cog """
+""" moderation.py """
 
 from discord.ext import commands
 
 class Moderation(commands.Cog):
-    """ Cog to interact with Twitter/X """
+    """ General Server Moderation Cog """
 
     def __init__(self, bot):
         self.bot = bot
