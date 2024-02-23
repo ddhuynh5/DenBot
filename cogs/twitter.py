@@ -14,16 +14,18 @@ class Twitter(commands.Cog):
     async def on_message(self, message):
         """ Fix Twitter/X Embeds """
 
-        if ("https://twitter.com/" in message.content):
-            suffix = message.content.split("twitter.com/")[1]
-            modified_url = "http://fxtwitter.com/" + suffix
+        if "https://twitter.com/" in message.content:
+            modified_url = "https://fxtwitter.com/"
+            new_content = message.content.replace("https://twitter.com/", modified_url)
             await message.delete()
-            await message.channel.send(modified_url + " | **__" + str(message.author) + "__**")
-        elif ("https://x.com/" in message.content):
-            suffix = message.content.split("x.com/")[1]
-            modified_url = "http://fixupx.com/" + suffix
+            await message.channel.send(new_content + " | Sent by: **__" + str(message.author.nick) + "__**")
+
+        elif "https://x.com/" in message.content:
+            modified_url = "https://fixupx.com/"
+            new_content = message.content.replace("https://x.com/", modified_url)
             await message.delete()
-            await message.channel.send(modified_url + " | **__" + str(message.author) + "__**")
+            await message.channel.send(new_content + " | Sent by: **__" + str(message.author.nick) + "__**")
+
 
 async def setup(bot):
     """ Adds cog to bot """
