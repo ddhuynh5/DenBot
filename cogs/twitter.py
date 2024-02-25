@@ -18,13 +18,13 @@ class Twitter(commands.Cog):
             modified_url = "https://fxtwitter.com/"
             new_content = message.content.replace("https://twitter.com/", modified_url)
             await message.delete()
-            await message.channel.send(new_content + " | Sent by: **__" + str(message.author.nick) + "__**")
+            await message.channel.send(new_content + " | Sent by: **__" + str(message.author.display_name) + "__**")
 
         elif "https://x.com/" in message.content:
             modified_url = "https://fixupx.com/"
             new_content = message.content.replace("https://x.com/", modified_url)
             await message.delete()
-            await message.channel.send(new_content + " | Sent by: **__" + str(message.author.nick) + "__**")
+            await message.channel.send(new_content + " | Sent by: **__" + str(message.author.display_name) + "__**")
 
 
 async def setup(bot):
