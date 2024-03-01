@@ -33,21 +33,40 @@ class General(commands.Cog):
             return None
 
     @commands.command(name="remind", help="Usage: !remind [number] [s/m/h/d] [msg]")
-    async def remind(self, ctx, duration: str, *, msg: str):
+    async def remind(self, ctx, duration: Optional[str], *, msg: Optional[str]):
         """ Removes a specified number of messages depicted by user """
 
-        seconds = self.parse_duration(duration)
-
-        if seconds is None:
-            await ctx.send("Invalid duration format. Please use 's' for seconds, 'm' for minutes, 'h' for hours, or 'd' for days.")
+        if duration is None:
+            embed = discord.Embed(
+                title="Usage",
+                description="!remind [number] [s/m/h/d] [msg]",
+                color=discord.Color.purple()
+            )
+            
+            await ctx.send(embed=embed)
             return
-        
-        embed = discord.Embed(title=f"Duration: {duration}", description=msg, color=0x00ff00)
+        elif msg is None:
+            embed = discord.Embed(
+                title="Usage",
+                description="Don't forget your message! !remind [number] [s/m/h/d] [msg]",
+                color=discord.Color.purple()
+            )
+            
+            await ctx.send(embed=embed)
+            return
+        else:
+            seconds = self.parse_duration(duration)
+            
+            if seconds is None:
+                await ctx.send("Invalid duration format. Please use 's' for seconds, 'm' for minutes, 'h' for hours, or 'd' for days.")
+                return
+            
+            embed = discord.Embed(title=f"Duration: {duration}", description=msg, color=0x00ff00)
 
-        await ctx.send(f"Reminder set for {duration}: {msg}")
-        await asyncio.sleep(seconds)
-        await ctx.send(f"Hey {ctx.author.mention}, here's the reminder you requested")
-        await ctx.send(embed=embed)
+            await ctx.send(f"Reminder set for {duration}: {msg}")
+            await asyncio.sleep(seconds)
+            await ctx.send(f"Hey {ctx.author.mention}, here's the reminder you requested")
+            await ctx.send(embed=embed)
     
     @commands.command(name="users", help="Gets the # of users in the server")
     async def users(self, ctx):
@@ -69,32 +88,42 @@ class General(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name="timer", help="Countdown [s/m/h/d]")
-    async def timer(self, ctx, duration: str):
+    async def timer(self, ctx, duration: Optional[str]):
         """ Countdown for x duration inputted by user """
         
-        try:
-            seconds = self.parse_duration(duration)
+        if duration is None:
+            embed = discord.Embed(
+                title="Usage",
+                description="!timer duration [s/m/h/d]",
+                color=discord.Color.purple()
+            )
+            
+            await ctx.send(embed=embed)
+            return
+        else:
+            try:
+                seconds = self.parse_duration(duration)
 
-            if seconds is None:
-                await ctx.send("Invalid duration format. Please use 's' for seconds, 'm' for minutes, 'h' for hours, or 'd' for days.")
-                return
+                if seconds is None:
+                    await ctx.send("Invalid duration format. Please use 's' for seconds, 'm' for minutes, 'h' for hours, or 'd' for days.")
+                    return
 
-            if seconds <= 0:
-                await ctx.send("Negatives numbers don't exist, try a positive number!")
-                return
-            message = await ctx.send("**Countdown Timer:** {seconds}")
+                if seconds <= 0:
+                    await ctx.send("Negatives numbers don't exist, try a positive number!")
+                    return
+                message = await ctx.send("**Countdown Timer:** {seconds}")
 
-            while True:
-                seconds -= 1
-                if seconds == 0:
-                    await message.edit(content="Finished!")
-                    break
-                await message.edit(content=f"**Countdown Timer:** {seconds}")
-                await asyncio.sleep(1)
+                while True:
+                    seconds -= 1
+                    if seconds == 0:
+                        await message.edit(content="Finished!")
+                        break
+                    await message.edit(content=f"**Countdown Timer:** {seconds}")
+                    await asyncio.sleep(1)
 
-            await ctx.send(f"{ctx.author.mention} Your countdown timer ({duration}) has ended!")
-        except ValueError:
-            await ctx.send("Must be a number!")
+                await ctx.send(f"{ctx.author.mention} Your countdown timer ({duration}) has ended!")
+            except ValueError:
+                await ctx.send("Must be a number!")
 
     @commands.command(name="roles", help="Customize your roles!")
     async def roles(self, ctx, selection: Optional[str]):
@@ -106,7 +135,8 @@ class General(commands.Cog):
             "minecraft",
             "bloons",
             "Hazbin",
-            "cleanup"
+            "cleanup",
+            "denbot"
         ]
 
         if selection is None:
