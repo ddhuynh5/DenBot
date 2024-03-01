@@ -1,8 +1,10 @@
 """ general.py """
 
+import asyncio
 import discord
 from discord.ext import commands
-import asyncio
+from discord.utils import get
+from typing import Optional
 
 class General(commands.Cog):
     """ General/Basic Commands Cog """
@@ -93,6 +95,45 @@ class General(commands.Cog):
             await ctx.send(f"{ctx.author.mention} Your countdown timer ({duration}) has ended!")
         except ValueError:
             await ctx.send("Must be a number!")
+
+    @commands.command(name="roles", help="Customize your roles!")
+    async def roles(self, ctx, selection: Optional[str]):
+        """ Role management for non-moderator+ """
+
+        roles_list = [
+            "palworld",
+            "osu",
+            "minecraft",
+            "bloons",
+            "Hazbin",
+            "cleanup"
+        ]
+
+        if selection is None:
+            data = "\n".join(roles_list)
+
+            embed = discord.Embed(
+                title="Available Roles:",
+                description=f"{data}",
+                color=discord.Color.purple()
+            )
+
+            await ctx.send(embed=embed)
+            return
+        else:
+            if selection not in roles_list:
+                await ctx.send("Name not found in available roles!")
+                return
+
+            member = ctx.message.author
+            role = get(ctx.guild.roles, name=selection)
+            
+            if role not in ctx.author.roles:
+                await member.add_roles(role)
+                await ctx.send(f"Added {role}! To remove: !roles {role}")
+            else:
+                await member.remove_roles(role)
+                await ctx.send(f"Removed {role}!")
 
 async def setup(bot):
     """ Adds cog to bot """
