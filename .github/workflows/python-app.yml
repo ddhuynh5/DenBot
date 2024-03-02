@@ -23,6 +23,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.11"
+    - name: Debugging
+      run: |
+        echo "Current Directory: $PWD"
+        ls -l
+        env
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
