@@ -11,6 +11,7 @@ Remind | Sets a reminder for x amount of (s/m/h/d) for a message | `!remind [num
 Timer | Sets a countdown for x amount of (s/m/h/d) | `!timer [number][s/m/h/d]` | none |
 Members | List server members | `!members` | none |
 Users | List number of server members | `!users` | none |
+Roles | Role management for end user, !roles for list | `!roles [role]` | none |
 
 #### Music Player
 Name | Description | Usage | Level Requirement | 
