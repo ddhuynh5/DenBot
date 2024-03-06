@@ -9,6 +9,16 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 USERNAME = os.getenv("DB_USER")
 PASSWORD = os.getenv("DB_PASS")
 
+class CustomHelpCommand(commands.MinimalHelpCommand):
+    async def send_pages(self):
+        destination = self.get_destination()
+        embed = discord.Embed(color=discord.Color.blurple(), description="")
+
+        for page in self.paginator.pages:
+            embed.description += page
+        
+        await destination.send(embed=embed)
+
 class BotOverride(commands.Bot):
     """ Overrides default Bot classes """
 
@@ -21,6 +31,7 @@ class BotOverride(commands.Bot):
         await self.invoke(ctx)
 
 bot = BotOverride(command_prefix="!", intents=discord.Intents.all())
+bot.help_command = CustomHelpCommand()
 
 async def main():
     """ Main function where bot loads cogs and starts up """
