@@ -28,6 +28,7 @@ Name | Description | Usage | Level Requirement |
 --- | --- | --- | --- |
 Cat | A random cat picture! | `!cat` | none |
 Austin | Pings my friend, Austin | `!austin` | none |
+Gif | Random GIF | `!gif [msg]` | none |
 
 ---
 
