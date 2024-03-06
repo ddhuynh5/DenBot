@@ -1,10 +1,14 @@
 """ fun.py """
 
-import asyncio
+import os
 import discord
 import requests
-
+import random
 from discord.ext import commands
+from urllib import parse
+from typing import Optional
+
+GIPHY = os.getenv("GIPHY")
 
 
 class Fun(commands.Cog):
@@ -28,6 +32,32 @@ class Fun(commands.Cog):
 
         austin = 181438247015022592
         await ctx.send(f"Hey <@{austin}>, {ctx.author.mention} wanted you")
+
+    @commands.command(name="gif", help="get a random GIF")
+    async def gif(self, ctx, *, msg: Optional[str]):
+        if msg is None:
+            embed = discord.Embed(
+                title="Usage",
+                description="!gif [msg]",
+                color=discord.Color.purple()
+            )
+            
+            await ctx.send(embed=embed)
+            return
+        else:
+            url = "http://api.giphy.com/v1/gifs/search"
+            num = random.randint(0, 9)
+
+            params = parse.urlencode({
+                "q": msg,
+                "api_key": GIPHY,
+                "limit": "10"
+            })
+
+            response = requests.get(url=url, params=params)
+            res = response.json()
+
+            await ctx.send(res["data"][num]["url"])
 
 
 async def setup(bot):
