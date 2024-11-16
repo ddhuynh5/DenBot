@@ -40,7 +40,7 @@ Gif | Random GIF | `!gif [msg]` | none |
 ### About
 
 > I started developing DenBot in October 2022, mainly as a joke between my friends and me. It has since grown into a project that I am quite passionate about.<br /><br /> Some things DenBot can do:
-> - Fixes Twitter/X embed links (Discord struggles with image/video embeds when linked in a chat channel)
+> - Fixes Twitter/X and BlueSky embed links (Discord struggles with image/video embeds when linked in a chat channel)
 > - Basic moderation commands
 > - Basic general commands (remind me notifications, timer, member lists)
 > - YouTube features
